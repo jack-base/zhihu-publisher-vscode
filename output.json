@@ -1,0 +1,282 @@
+[
+  {
+    "index": 0,
+    "request": {
+      "bodySize": 0,
+      "method": "POST",
+      "url": "https://www.zhihu.com/api/v4/me?include=is_realname",
+      "httpVersion": "HTTP/2",
+      "headers": [
+        {
+          "name": "Host",
+          "value": "www.zhihu.com"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+        },
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "Accept-Language",
+          "value": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2"
+        },
+        {
+          "name": "Accept-Encoding",
+          "value": "gzip, deflate, br, zstd"
+        },
+        {
+          "name": "Referer",
+          "value": "https://www.zhihu.com/"
+        },
+        {
+          "name": "x-requested-with",
+          "value": "fetch"
+        },
+        {
+          "name": "x-zse-93",
+          "value": "101_3_3.0"
+        },
+        {
+          "name": "x-zse-96",
+          "value": "2.0_VtU=eYAtTqTOYQS0S3w0CwF6GkNWKGzzwFrw0q82B2LR/q6IuZeZL+yynPCTdYgx"
+        },
+        {
+          "name": "Connection",
+          "value": "keep-alive"
+        },
+        {
+          "name": "Cookie",
+          "value": "_xsrf=OLy5fHckRY2dzCLxtSVbw445xINATbac; __zse_ck=004_zFinAB0i/GHqufLug0X4KxJi3RoJxTNy6GLG3h/Vp=GIaLSbHOdt0Crgx/GgFP58t6QDqKWfavsDPb1xaNDm=MLgjxhcLbzgPei2VPAQCVDHhhZus=xDc6uIDD34TbQv-PknijbTlQKE6eFjt7XPvK5QvGVSq0/Fu7RF83H9JfzvV6+TbILvhK2s0KGo6uMayf4TfUcs44AlOtYzO/YeARZGcxTniJgs7TL7XVfmue/WtlFZMX9YKerwozSxGxfww; _zap=517b5f54-65a2-4389-8739-7ef18b573474; d_c0=4NfT7w7-HxqPTjMJ5n2Ibop8qFRFxgiBQKg=|1741603573; Hm_lvt_98beee57fd2ef70ccdd5ca52b9740c49=1751052835,1751362507; __snaker__id=TgFLg2uQOHPRRRjc; z_c0=2|1:0|10:1751124624|4:z_c0|80:MS4xcEtMU05RQUFBQUFtQUFBQVlBSlZUU0pBVEdsMFZkenU3cjNDdGxVTzdOTndXaFhEcTN2SGxnPT0=|d80baf6b35008391c81cd45e13f07bbc508d89856b9eef01e889a9385cbed660; q_c1=5238e6f2a5254613a3f5ea698caf2cdc|1742816255000|1742816255000; ff_supports_webp=1; BEC=04f80badde0b95441251f0ed57775ff7; Hm_lpvt_98beee57fd2ef70ccdd5ca52b9740c49=1751362507; HMACCOUNT=166B565A2EFA1C8B; SESSIONID=NEKciXdPniTvEXEpzTucMNYVLb59hPWmM3Ug4TsFDBG; JOID=Vl8XBkmJpGULhIyKZeYmsO-Vc5B5xOQpb-vX6zLhzjR6xtLMEEENBmKBiohl-A4z0PjdbPNqpk2OliTzj7t9cDo=; osd=VFEdC0-Lqm8Ggo6Eb-sgsuGffpZ7yu4kaenZ4T_nzDpwy9TOHksAAGCPgIVj-gA53f7fYvlnoE-AnCn1jbV3fTw="
+        },
+        {
+          "name": "Sec-Fetch-Dest",
+          "value": "empty"
+        },
+        {
+          "name": "Sec-Fetch-Mode",
+          "value": "cors"
+        },
+        {
+          "name": "Sec-Fetch-Site",
+          "value": "same-origin"
+        },
+        {
+          "name": "Priority",
+          "value": "u=4"
+        },
+        {
+          "name": "TE",
+          "value": "trailers"
+        }
+      ],
+      "cookies": [
+        {
+          "name": "_xsrf",
+          "value": "OLy5fHckRY2dzCLxtSVbw445xINATbac"
+        },
+        {
+          "name": "__zse_ck",
+          "value": "004_zFinAB0i/GHqufLug0X4KxJi3RoJxTNy6GLG3h/Vp=GIaLSbHOdt0Crgx/GgFP58t6QDqKWfavsDPb1xaNDm=MLgjxhcLbzgPei2VPAQCVDHhhZus=xDc6uIDD34TbQv-PknijbTlQKE6eFjt7XPvK5QvGVSq0/Fu7RF83H9JfzvV6+TbILvhK2s0KGo6uMayf4TfUcs44AlOtYzO/YeARZGcxTniJgs7TL7XVfmue/WtlFZMX9YKerwozSxGxfww"
+        },
+        {
+          "name": "_zap",
+          "value": "517b5f54-65a2-4389-8739-7ef18b573474"
+        },
+        {
+          "name": "d_c0",
+          "value": "4NfT7w7-HxqPTjMJ5n2Ibop8qFRFxgiBQKg=|1741603573"
+        },
+        {
+          "name": "Hm_lvt_98beee57fd2ef70ccdd5ca52b9740c49",
+          "value": "1751052835,1751362507"
+        },
+        {
+          "name": "__snaker__id",
+          "value": "TgFLg2uQOHPRRRjc"
+        },
+        {
+          "name": "z_c0",
+          "value": "2|1:0|10:1751124624|4:z_c0|80:MS4xcEtMU05RQUFBQUFtQUFBQVlBSlZUU0pBVEdsMFZkenU3cjNDdGxVTzdOTndXaFhEcTN2SGxnPT0=|d80baf6b35008391c81cd45e13f07bbc508d89856b9eef01e889a9385cbed660"
+        },
+        {
+          "name": "q_c1",
+          "value": "5238e6f2a5254613a3f5ea698caf2cdc|1742816255000|1742816255000"
+        },
+        {
+          "name": "ff_supports_webp",
+          "value": "1"
+        },
+        {
+          "name": "BEC",
+          "value": "DFDFGF",
+          "httpOnly": false,
+          "secure": false
+        },
+        {
+          "name": "Hm_lpvt_98beee57fd2ef70ccdd5ca52b9740c49",
+          "value": "1751362507"
+        },
+        {
+          "name": "HMACCOUNT",
+          "value": "166B565A2EFA1C8B"
+        },
+        {
+          "name": "SESSIONID",
+          "value": "NEKciXdPniTvEXEpzTucMNYVLb59hPWmM3Ug4TsFDBG"
+        },
+        {
+          "name": "JOID",
+          "value": "Vl8XBkmJpGULhIyKZeYmsO-Vc5B5xOQpb-vX6zLhzjR6xtLMEEENBmKBiohl-A4z0PjdbPNqpk2OliTzj7t9cDo="
+        },
+        {
+          "name": "osd",
+          "value": "VFEdC0-Lqm8Ggo6Eb-sgsuGffpZ7yu4kaenZ4T_nzDpwy9TOHksAAGCPgIVj-gA53f7fYvlnoE-AnCn1jbV3fTw="
+        }
+      ],
+      "queryString": [
+        {
+          "name": "include",
+          "value": "is_realname"
+        }
+      ],
+      "headersSize": 1710
+    },
+    "originalResponse": {
+      "status": 200,
+      "statusText": "OK",
+      "httpVersion": "HTTP/2",
+      "headers": [
+        {
+          "name": "server",
+          "value": "BLB/23.08.4.1"
+        },
+        {
+          "name": "content-type",
+          "value": "application/json"
+        },
+        {
+          "name": "vary",
+          "value": "Accept-Encoding"
+        },
+        {
+          "name": "expires",
+          "value": "Thu, 01 Jan 1970 08:00:00 CST"
+        },
+        {
+          "name": "pragma",
+          "value": "no-cache"
+        },
+        {
+          "name": "x-dayu-backend-response",
+          "value": "0.074"
+        },
+        {
+          "name": "referrer-policy",
+          "value": "no-referrer-when-downgrade"
+        },
+        {
+          "name": "x-secng-response",
+          "value": "0.083999872207642"
+        },
+        {
+          "name": "x-udid",
+          "value": "4NfT7w7-HxqPTjMJ5n2Ibop8qFRFxgiBQKg="
+        },
+        {
+          "name": "set-cookie",
+          "value": "BEC=6ff32b60f55255af78892ba1e551063a;Path=/;Max-Age=3600"
+        },
+        {
+          "name": "cache-control",
+          "value": "private, must-revalidate, no-cache, no-store, max-age=0"
+        },
+        {
+          "name": "transfer-encoding",
+          "value": "chunked"
+        },
+        {
+          "name": "connection",
+          "value": "close"
+        },
+        {
+          "name": "date",
+          "value": "Tue, 01 Jul 2025 10:06:38 GMT"
+        },
+        {
+          "name": "eo-log-uuid",
+          "value": "13292418837298399627"
+        },
+        {
+          "name": "eo-cache-status",
+          "value": "MISS"
+        }
+      ],
+      "cookies": [
+        {
+          "name": "BEC",
+          "value": "738c6d0432e7aaf738ea36855cdce904"
+        }
+      ],
+      "content": {
+        "mimeType": "application/json",
+        "size": 1695,
+        "text": "{\n  \"id\": \"2825764de5e56a0d2d20a167dfae9d38\",\n  \"url_token\": \"yjk-59-34\",\n  \"name\": \"yjk\",\n  \"use_default_avatar\": false,\n  \"avatar_url\": \"https://picx.zhimg.com/v2-25ac7c0d6225fc37e7f4419d75895b22_xl.jpg?source=32738c0c&needBackground=1\",\n  \"avatar_url_template\": \"https://picx.zhimg.com/v2-25ac7c0d6225fc37e7f4419d75895b22_l.jpg?source=32738c0c&needBackground=1\",\n  \"is_org\": false,\n  \"type\": \"people\",\n  \"url\": \"https://www.zhihu.com/api/v4/people/yjk-59-34\",\n  \"user_type\": \"people\",\n  \"headline\": \"物理学话题下的拙劣答主\",\n  \"headline_render\": \"物理学话题下的拙劣答主\",\n  \"gender\": 1,\n  \"is_advertiser\": false,\n  \"ip_info\": \"IP 属地陕西\",\n  \"vip_info\": {\n    \"is_vip\": true,\n    \"vip_type\": 1,\n    \"rename_days\": \"60\",\n    \"vip_icon\": {\n      \"url\": \"https://pic1.zhimg.com/v2-4812630bc27d642f7cafcd6cdeca3d7a.jpg?source=88ceefae\",\n      \"night_mode_url\": \"https://picx.zhimg.com/v2-c9686ff064ea3579730756ac6c289978.jpg?source=88ceefae\"\n    },\n    \"entrance_v2\": null,\n    \"rename_frequency\": 1,\n    \"rename_await_days\": 0\n  },\n  \"kvip_info\": {\n    \"is_vip\": false\n  },\n  \"answer_count\": 2,\n  \"question_count\": 0,\n  \"articles_count\": 2,\n  \"columns_count\": 0,\n  \"zvideo_count\": 0,\n  \"favorite_count\": 1,\n  \"pins_count\": 1,\n  \"voteup_count\": 3,\n  \"thanked_count\": 12,\n  \"available_medals_count\": 0,\n  \"org_verify_status\": null,\n  \"uid\": \"1466087272701018112\",\n  \"default_notifications_count\": 80,\n  \"follow_notifications_count\": 0,\n  \"vote_thank_notifications_count\": 1,\n  \"messages_count\": 122,\n  \"creation_count\": 5,\n  \"is_realname\": true,\n  \"has_applying_column\": false,\n  \"has_add_baike_summary_permission\": false,\n  \"editor_info\": [\n    \"bio\",\n    \"topic\"\n  ]\n}"
+      },
+      "redirectURL": "",
+      "headersSize": 590,
+      "bodySize": 1316
+    },
+    "error": {
+      "message": "Request failed with status code 405",
+      "code": "ERR_BAD_REQUEST",
+      "config": {
+        "method": "post",
+        "url": "https://www.zhihu.com/api/v4/me?include=is_realname",
+        "headers": {
+          "Accept": "*/*",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Host": "www.zhihu.com",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0",
+          "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Referer": "https://www.zhihu.com/",
+          "x-requested-with": "fetch",
+          "x-zse-93": "101_3_3.0",
+          "x-zse-96": "2.0_VtU=eYAtTqTOYQS0S3w0CwF6GkNWKGzzwFrw0q82B2LR/q6IuZeZL+yynPCTdYgx",
+          "Connection": "keep-alive",
+          "Cookie": "_xsrf=OLy5fHckRY2dzCLxtSVbw445xINATbac; __zse_ck=004_zFinAB0i/GHqufLug0X4KxJi3RoJxTNy6GLG3h/Vp=GIaLSbHOdt0Crgx/GgFP58t6QDqKWfavsDPb1xaNDm=MLgjxhcLbzgPei2VPAQCVDHhhZus=xDc6uIDD34TbQv-PknijbTlQKE6eFjt7XPvK5QvGVSq0/Fu7RF83H9JfzvV6+TbILvhK2s0KGo6uMayf4TfUcs44AlOtYzO/YeARZGcxTniJgs7TL7XVfmue/WtlFZMX9YKerwozSxGxfww; _zap=517b5f54-65a2-4389-8739-7ef18b573474; d_c0=4NfT7w7-HxqPTjMJ5n2Ibop8qFRFxgiBQKg=|1741603573; Hm_lvt_98beee57fd2ef70ccdd5ca52b9740c49=1751052835,1751362507; __snaker__id=TgFLg2uQOHPRRRjc; z_c0=2|1:0|10:1751124624|4:z_c0|80:MS4xcEtMU05RQUFBQUFtQUFBQVlBSlZUU0pBVEdsMFZkenU3cjNDdGxVTzdOTndXaFhEcTN2SGxnPT0=|d80baf6b35008391c81cd45e13f07bbc508d89856b9eef01e889a9385cbed660; q_c1=5238e6f2a5254613a3f5ea698caf2cdc|1742816255000|1742816255000; ff_supports_webp=1; BEC=04f80badde0b95441251f0ed57775ff7; Hm_lpvt_98beee57fd2ef70ccdd5ca52b9740c49=1751362507; HMACCOUNT=166B565A2EFA1C8B; SESSIONID=NEKciXdPniTvEXEpzTucMNYVLb59hPWmM3Ug4TsFDBG; JOID=Vl8XBkmJpGULhIyKZeYmsO-Vc5B5xOQpb-vX6zLhzjR6xtLMEEENBmKBiohl-A4z0PjdbPNqpk2OliTzj7t9cDo=; osd=VFEdC0-Lqm8Ggo6Eb-sgsuGffpZ7yu4kaenZ4T_nzDpwy9TOHksAAGCPgIVj-gA53f7fYvlnoE-AnCn1jbV3fTw=",
+          "Sec-Fetch-Dest": "empty",
+          "Sec-Fetch-Mode": "cors",
+          "Sec-Fetch-Site": "same-origin",
+          "Priority": "u=4",
+          "TE": "trailers"
+        }
+      },
+      "response": {
+        "status": 405,
+        "headers": {
+          "server": "BLB/23.08.4.1",
+          "content-type": "text/html; charset=UTF-8",
+          "expires": "Fri, 02 Jan 2000 00:00:00 GMT",
+          "pragma": "no-cache",
+          "x-dayu-backend-response": "0.042",
+          "vary": "Accept-Encoding",
+          "referrer-policy": "no-referrer-when-downgrade",
+          "x-secng-response": "0.049999952316284",
+          "x-udid": "4NfT7w7-HxqPTjMJ5n2Ibop8qFRFxgiBQKg=",
+          "cache-control": "private, must-revalidate, no-cache, no-store, max-age=0",
+          "content-length": "87",
+          "connection": "keep-alive",
+          "date": "Tue, 01 Jul 2025 15:21:41 GMT",
+          "eo-log-uuid": "13567810204839327044",
+          "eo-cache-status": "MISS"
+        },
+        "data": "<html><title>405: Method Not Allowed</title><body>405: Method Not Allowed</body></html>"
+      }
+    },
+    "timeTaken": 283
+  }
+]
