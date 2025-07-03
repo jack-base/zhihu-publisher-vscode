@@ -20,7 +20,6 @@
       "runtimeArgs": ["-r", "ts-node/register"],
       "args": ["${file}"],
       "cwd": "${workspaceFolder}",
-      "protocol": "inspector",
       "skipFiles": ["<node_internals>/**"],
       "env": {
         "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"

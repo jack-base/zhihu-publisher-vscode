@@ -1,5 +1,7 @@
 {
   "name": "zhihu-publisher-vscode",
+  "publisher": "jack-base",
+  
   "displayName": "zhihu-publisher-vscode",
   "description": "",
   "version": "0.0.1",

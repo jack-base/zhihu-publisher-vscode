@@ -1,37 +1,33 @@
 # 标题1
 
-## 标题2
+这是一段普通文本，包含**粗体**和*斜体*。
 
-**粗体文字**
-
-*斜体文字*
-
-[链接](https://ms-vscode.gallerycdn.vsassets.io/extensions/ms-vscode/extension-test-runner/0.0.12/1724513423942/Microsoft.VisualStudio.Services.Icons.Default)
-
-> 这是一段引用
+> 这是一个引用块
+> 可以包含多行内容
 
 1. 有序列表项1
 2. 有序列表项2
 
-- 无序列表项1
-- 无序列表项2
-
-`行内代码`
+* 无序列表项1
+    * 子列表项1
 
 ```python
-
 def hello_world():
-
     print("Hello, world!")
-
 ```
 
-| 表头1 | 表头2 |
-| --- | --- |
+[链接文本](http://example.com)
+
+![图片](https://www.iana.org/_img/2025.01/iana-logo-header.svg)
+
+| 表头1   | 表头2   |
+| ------- | ------- |
 | 单元格1 | 单元格2 |
+| 单元格3 | 单元格4 |
 
-![图片](https://ms-vscode.gallerycdn.vsassets.io/extensions/ms-vscode/extension-test-runner/0.0.12/1724513423942/Microsoft.VisualStudio.Services.Icons.Default)
+这是一个脚注引用[^1]
 
-$$
-E=mc^2
-$$
+这是一个块级公式：
+$$E=mc^2$$
+
+[^1]: 这是脚注内容，链接到 [知乎](https://www.zhihu.com)

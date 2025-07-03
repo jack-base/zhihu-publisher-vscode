@@ -4,8 +4,6 @@ import axios, {
   AxiosResponse,
   AxiosError,
 } from "axios";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import { HttpProxyAgent } from "http-proxy-agent"; // 新增HTTP代理支持
 import * as fs from "fs";
 import * as path from "path";
 import * as https from "https"; // 新增HTTPS模块支持
@@ -188,7 +186,7 @@ type ErrorCallback = (
   result: ReplayResult
 ) => void;
 
-class HarReplayTool {
+class HarReplayer {
   private harData: HAR | null = null;
   private axiosInstance: AxiosInstance;
   private delayMs: number = 0;
@@ -196,10 +194,6 @@ class HarReplayTool {
   private concurrencyLevel: number = 1;
   private replayResults: ReplayResult[] = [];
   private proxyConfig?: { host: string; port: number; protocol?: string };
-  private httpsAgent?: HttpsProxyAgent<string>;
-  private httpAgent?: HttpProxyAgent<string>; // 新增: HTTP代理支持
-  private ignoreSSL: boolean = false; // 新增: 是否忽略SSL证书验证
-
   // 回调函数
   private onRequestStartCallbacks: RequestStartCallback[] = [];
   private onRequestCompleteCallbacks: RequestCompleteCallback[] = [];
@@ -209,8 +203,8 @@ class HarReplayTool {
     // 初始化 Axios 实例，增加HTTPS配置
     this.axiosInstance = axios.create({
       httpsAgent: new https.Agent({
-        rejectUnauthorized: true // 默认验证证书
-      })
+        rejectUnauthorized: true, // 默认验证证书
+      }),
     });
   }
 
@@ -219,9 +213,7 @@ class HarReplayTool {
     try {
       const data = fs.readFileSync(harFilePath, "utf8");
       this.harData = JSON.parse(data) as HAR;
-      console.log(`成功加载 HAR 文件，包含 ${this.getRequestCount()} 个请求`);
     } catch (error) {
-      console.error("加载 HAR 文件失败:", error);
       throw error;
     }
   }
@@ -233,33 +225,18 @@ class HarReplayTool {
     protocol?: string;
   }): void {
     this.proxyConfig = proxyConfig;
-    const proxyUrl = `${proxyConfig.protocol || "http"}://${proxyConfig.host}:${proxyConfig.port}`;
-    
-    // 根据协议创建不同的代理
-    if (proxyConfig.protocol === 'https') {
-      this.httpsAgent = new HttpsProxyAgent(proxyUrl);
-      this.httpAgent = undefined;
-    } else {
-      this.httpAgent = new HttpProxyAgent(proxyUrl);
-      this.httpsAgent = undefined;
-    }
-    
     this.axiosInstance.defaults.proxy = false; // 禁用axios默认代理
-    console.log(`已设置代理服务器: ${proxyUrl}`);
   }
 
   // 新增: 设置是否忽略SSL证书验证
   public setIgnoreSSL(ignore: boolean): void {
-    this.ignoreSSL = ignore;
     this.axiosInstance.defaults.httpsAgent = new https.Agent({
-      rejectUnauthorized: !ignore
+      rejectUnauthorized: !ignore,
     });
-    console.log(`SSL证书验证: ${ignore ? '已禁用' : '已启用'}`);
   }
 
   public setDelay(delayMs: number): void {
     this.delayMs = delayMs;
-    console.log(`已设置请求延迟: ${delayMs}ms`);
   }
 
   // 请求处理
@@ -267,7 +244,6 @@ class HarReplayTool {
     if (!this.harData) {
       throw new Error("HAR 文件未加载，请先调用 init 方法");
     }
-    console.log(`开始重播所有请求，共 ${this.harData.log.entries[0].request.postData?.text} 个请求`);
     this.replayResults = [];
 
     if (this.concurrencyLevel > 1) {
@@ -302,7 +278,6 @@ class HarReplayTool {
     }
 
     const entry = this.harData.log.entries[index];
-    console.log(`正在重播请求 #${index + 1}: ${entry.request.postData?.text}`);
     const result: ReplayResult = {
       index,
       request: entry.request,
@@ -318,9 +293,10 @@ class HarReplayTool {
 
     try {
       const axiosConfig = this.prepareAxiosConfig(entry.request);
-      console.log(`准备发送请求: ${axiosConfig.method} ${axiosConfig.url}`);
       const response = await this.axiosInstance.request(axiosConfig);
-      console.log(axiosConfig);
+      console.log(
+        `请求 #${index + 1}: ${entry.request.method} ${entry.request.url} - 状态码: ${response.status}`
+      );
       result.replayedResponse = response;
       result.timeTaken = Date.now() - startTime;
       result.match = this.validateResponse(response, entry.response);
@@ -329,14 +305,16 @@ class HarReplayTool {
       this.onRequestCompleteCallbacks.forEach((callback) =>
         callback(index, entry.request, response, result)
       );
-    } catch (error) {
+    } catch (error: any) {
       result.error = error;
       result.timeTaken = Date.now() - startTime;
-
-      // 触发错误回调
-      this.onErrorCallbacks.forEach((callback) =>
-        callback(index, entry.request, error, result)
+      console.error(
+        `请求 #${index + 1} 失败: ${entry.request.method} ${entry.request.url} - 状态码: ${error.response.status}`
       );
+
+      this.onErrorCallbacks.forEach((callback) => {
+        callback(index, entry.request, error, result);
+      });
     }
 
     this.replayResults[index] = result;
@@ -542,10 +520,8 @@ class HarReplayTool {
         );
         if (cookieIndex !== -1) {
           request.cookies[cookieIndex] = cookieData;
-          console.log(`修改Cookie:${cookieIndex}`);
         } else {
           request.cookies.push(cookieData);
-          console.log(`增加Cookie: ${cookieIndex}=${value}`);
         }
       });
     }
@@ -578,7 +554,6 @@ class HarReplayTool {
       // 修改MIME类型
       if (config.postData.mimeType !== undefined) {
         request.postData.mimeType = config.postData.mimeType;
-
       }
 
       // 修改请求体文本
@@ -587,24 +562,6 @@ class HarReplayTool {
           typeof config.postData.text === "string"
             ? config.postData.text
             : JSON.stringify(config.postData.text);
-
-            console.log(`修改请求体: ${request.postData.text}`);
-
-        // // 如果是JSON，确保content-type正确
-        // if (typeof config.postData.text !== "string") {
-        //   const contentTypeHeader = request.headers.find(
-        //     (h) => h.name.toLowerCase() === "content-type"
-        //   );
-
-        //   if (!contentTypeHeader) {
-        //     request.headers.push({
-        //       name: "Content-Type",
-        //       value: "application/json",
-        //     });
-        //   } else if (!contentTypeHeader.value.includes("application/json")) {
-        //     contentTypeHeader.value = "application/json";
-        //   }
-        // }
       }
 
       // 修改表单参数
@@ -653,7 +610,6 @@ class HarReplayTool {
   // 并发与性能
   public setConcurrency(concurrencyLevel: number): void {
     this.concurrencyLevel = Math.max(1, concurrencyLevel);
-    console.log(`并发请求数量已设置为: ${this.concurrencyLevel}`);
   }
 
   public async runConcurrentReplay(
@@ -672,9 +628,7 @@ class HarReplayTool {
         try {
           const result = await this.replayRequestByIndex(index);
           results.push(result);
-        } catch (error) {
-          console.error(`处理请求索引 ${index} 时出错:`, error);
-        }
+        } catch (error) {}
 
         // 应用请求间延迟
         if (this.delayMs > 0 && currentIndex < requestIndices.length) {
@@ -718,10 +672,78 @@ class HarReplayTool {
         outputPath,
         JSON.stringify(resultsToSave, null, 2)
       );
-
-      console.log(`重播结果已保存到: ${outputPath}`);
     } catch (error) {
-      console.error("保存重播结果失败:", error);
+      throw error;
+    }
+  }
+
+  public async saveReplayResultsAsHar(outputPath: string): Promise<void> {
+    try {
+      const resultsToSave: Array<HAREntry> = this.replayResults.map(
+        (result) => ({
+          startedDateTime: new Date().toISOString(),
+          time: result.timeTaken || 0,
+          request: result.request,
+          response: {
+            status: result.replayedResponse?.status || 0,
+            statusText: result.replayedResponse?.statusText || "",
+            httpVersion: result.request?.httpVersion,
+            headers: Object.entries(result.replayedResponse?.headers || {}).map(
+              ([name, value]) => ({
+                name: name,
+                value: value?.toString() || "",
+              })
+            ),
+            cookies: result.request?.cookies,
+            bodySize: result.replayedResponse?.data
+              ? Buffer.byteLength(result.replayedResponse.data)
+              : 0,
+            content: {
+              size: result.replayedResponse?.data
+                ? Buffer.byteLength(result.replayedResponse.data)
+                : 0,
+              compression: 0,
+              mimeType: result.replayedResponse?.headers["content-type"] || "",
+              text: result.replayedResponse?.data,
+              encoding:
+                result.replayedResponse?.headers["content-encoding"] || "",
+            },
+            redirectURL: "",
+            headersSize: result.replayedResponse
+              ? Buffer.byteLength(
+                  JSON.stringify(result.replayedResponse.headers)
+                )
+              : 0,
+          },
+          match: result.match,
+          timeTaken: result.timeTaken,
+          cache: {},
+          index: result.index,
+          timings: {
+            blocked: 0,
+            dns: 0,
+            connect: 0,
+            send: result.timeTaken || 0,
+            wait: result.timeTaken || 0,
+            receive: result.timeTaken || 0,
+          },
+        })
+      );
+      const harData: HAR = {
+        log: {
+          creator: {
+            name: "HarReplayer",
+            version: "1.0.0",
+          },
+          version: "1.2",
+          pages: [],
+          entries: resultsToSave,
+        },
+      };
+      const outputDir = path.dirname(outputPath);
+      await fs.promises.mkdir(outputDir, { recursive: true });
+      await fs.promises.writeFile(outputPath, JSON.stringify(harData, null, 2));
+    } catch (error) {
       throw error;
     }
   }
@@ -813,16 +835,18 @@ class HarReplayTool {
   // 私有辅助方法
   private prepareAxiosConfig(request: HARRequest): AxiosRequestConfig {
     // 判断请求协议类型
-    const isHttps = request.url.startsWith('https://');
-    
+    const isHttps = request.url.startsWith("https://");
+    // 去掉content-length头
+    request.headers = request.headers.filter(
+      (h) =>
+        h.name.toLowerCase() !== "content-length" && !h.name.startsWith(":")
+    );
     const config: AxiosRequestConfig = {
       method: request.method as any,
       url: request.url,
       headers: this.convertHeadersToObject(request.headers),
-      timeout: 30000, // 30秒超时
-      // 根据协议类型使用相应的代理
-      httpAgent: isHttps ? undefined : this.httpAgent,
-      httpsAgent: isHttps ? this.httpsAgent : undefined
+      timeout: 30000,
+      proxy: this.proxyConfig ? this.proxyConfig : undefined,
     };
 
     // 添加请求体
@@ -900,5 +924,4 @@ class HarReplayTool {
     };
   }
 }
-
-export default HarReplayTool;
+export { HarReplayer };
