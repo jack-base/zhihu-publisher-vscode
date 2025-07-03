@@ -1,9 +1,7 @@
-# Change Log
+# Zhihu-publisher-vsc
 
-All notable changes to the "zhihu-publisher-vscode" extension will be documented in this file.
+a plugin that can publish your zhihu article to zhihu.com
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+## [0.1]
 
 - Initial release
