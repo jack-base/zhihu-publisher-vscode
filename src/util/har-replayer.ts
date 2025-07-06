@@ -295,7 +295,9 @@ class HarReplayer {
       const axiosConfig = this.prepareAxiosConfig(entry.request);
       const response = await this.axiosInstance.request(axiosConfig);
       console.log(
-        `请求 #${index + 1}: ${entry.request.method} ${entry.request.url} - 状态码: ${response.status}`
+        `请求 #${index + 1}: ${entry.request.method} ${
+          entry.request.url
+        } - 状态码: ${response.status}`
       );
       result.replayedResponse = response;
       result.timeTaken = Date.now() - startTime;
@@ -309,7 +311,9 @@ class HarReplayer {
       result.error = error;
       result.timeTaken = Date.now() - startTime;
       console.error(
-        `请求 #${index + 1} 失败: ${entry.request.method} ${entry.request.url} - 状态码: ${error.response.status}`
+        `请求 #${index + 1} 失败: ${entry.request.method} ${
+          entry.request.url
+        } - 状态码: ${error.response.status}`
       );
 
       this.onErrorCallbacks.forEach((callback) => {
@@ -500,9 +504,8 @@ class HarReplayer {
         if (headerIndex === -1) {
           request.headers.push({ name, value: headerValue });
         } else {
+          request.headers[headerIndex].value = headerValue;
         }
-
-        request.headers[headerIndex].value = headerValue;
       });
     }
 

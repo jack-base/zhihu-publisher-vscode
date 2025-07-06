@@ -68,6 +68,6 @@
     "type": "git",
     "url": "https://github.com/jack-base/zhihu-publisher-vscode.git"
   },
-  "icon": "images/icon.png", 
+  "icon": "img/icon.jpeg", 
   "license": "MIT"
 }

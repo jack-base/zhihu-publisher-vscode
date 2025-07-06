@@ -10,7 +10,7 @@ export async function publishArticle(
   const traceId = `${pubtimestamp},${Math.random()
     .toString(36)
     .substring(2, 15)}`;
-  replayer.init(vscode.extensions.getExtension("jack-base.zhihu-publisher-vscode")!.extensionPath+"/src/resource/publish.har");
+  replayer.init(vscode.extensions.getExtension("jack-base.zhihu-publisher-vscode")!.extensionPath+"/resource/publish.har");
   replayer.modifyRequest(0, {
     url: "https://www.zhihu.com/api/v4/content/publish",
     headers: {
@@ -46,6 +46,6 @@ export async function publishArticle(
     },
   });
   const result = await replayer.replayRequestByIndex(0)
-  replayer.saveReplayResults("./src/resource/replay-result.har");
+  // replayer.saveReplayResults("./resource/replay-result.har");
   return result.replayedResponse?.data.code === 0;
 }

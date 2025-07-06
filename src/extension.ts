@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
           return;
         }
 
-        const content = document.getText();
+        const content = document.getText().replace( /(?<!\$)\$(?!\$)(.*?)(?<!\$)\$(?!\$)/g, (match, p1) => `$$${p1}$$`);
         const htmlContent = await uploadMarkdownFile(content, cookie);
 
         // 获取当前MD文件的绝对路径
@@ -103,7 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
           writeArticleMap(articleMapPath, articleMap);
         }
       } catch (error: any) {
-        vscode.window.showErrorMessage(`Error occured: ${error.message}`);
+        console.error("Error during publishing:", error);
       }
     }
   );
