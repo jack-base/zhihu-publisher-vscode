@@ -24,6 +24,15 @@
       "env": {
         "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
       }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Package Extension",
+      "runtimeExecutable": "vsce",
+      "args": [
+        "package",
+      ]
     }
   ]
 }
