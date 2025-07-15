@@ -1,2 +1,2 @@
-import { publishArticle } from "../zhihu/publish";
+import { publishArticle } from "../service/publish";
 

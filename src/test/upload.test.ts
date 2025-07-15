@@ -1,4 +1,4 @@
-import { uploadMarkdownFile } from "../zhihu/upload";
+import { uploadMarkdownFile } from "../service/upload";
 
 
 
