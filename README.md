@@ -33,9 +33,8 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 Users appreciate release notes as you update your extension.
 
-### 0.1
-Initial release of zhihu-publisher-vscode
-
+### 1.2.1
+- Add feature: support upload image
 
 ---
 

@@ -2,7 +2,6 @@ import axios from "axios";
 import FormData from "form-data";
 import fs from "fs";
 import vscode from "vscode";
-import { preprocessMarkdown } from "../utils/preprocess";
 export async function uploadMarkdownFile(
   fileContent: string,
   cookie: string,
