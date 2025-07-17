@@ -16,7 +16,7 @@ def hello_world():
 
 [链接文本](http://example.com)
 
-![图片](https://www.iana.org/_img/2025.01/iana-logo-header.svg)
+![图片](./image.png)
 
 | 表头1   | 表头2   |
 | ------- | ------- |

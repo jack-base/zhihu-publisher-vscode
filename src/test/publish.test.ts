@@ -1,2 +1,2 @@
-import { publishArticle } from "../service/publish";
+import { publishArticle } from "../service/publishArticle";
 

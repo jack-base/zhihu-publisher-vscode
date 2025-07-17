@@ -1,11 +1,19 @@
 import axios from "axios";
 import FormData from "form-data";
-
+import fs from "fs";
+import vscode from "vscode";
+import { preprocessMarkdown } from "../utils/preprocess";
 export async function uploadMarkdownFile(
   fileContent: string,
-  cookie: string
+  cookie: string,
+  resourceMap:any
 ): Promise<string> {
   try {
+
+    if (typeof fileContent !== "string") {
+      vscode.window.showErrorMessage("A problem occurred while processing the markdown file.");
+    }
+
     // 创建 FormData 对象
     const formData = new FormData();
     formData.append("document", fileContent, { filename: "test.md" });

@@ -1,4 +1,4 @@
-import { HarReplayer } from "../util/har-replayer";
+import { HarReplayer } from "../utils/har-replayer";
 import vscode from "vscode";
 async function updateArticle(
   articleId: string,
